@@ -3,870 +3,1214 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Our Little Story ❤️</title>
+
+<title>For You ❤️</title>
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-html {
-    scroll-behavior: smooth;
-}
+body{
+    min-height:100vh;
+    overflow:hidden;
+    font-family:"Segoe UI",sans-serif;
+    color:white;
 
-body {
-    font-family: "Poppins", Arial, sans-serif;
-    background: #fff5f7;
-    color: #4a2630;
-    overflow-x: hidden;
-}
-
-
-.opening {
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    background: linear-gradient(135deg, #ff758c, #ff7eb3);
-    transition: 1s ease;
-}
-
-.opening.hide {
-    opacity: 0;
-    visibility: hidden;
-}
-
-.opening-content {
-    padding: 30px;
-}
-
-.opening-heart {
-    font-size: 80px;
-    animation: heartbeat 1.4s infinite;
-}
-
-.opening h1 {
-    color: white;
-    font-size: 38px;
-    margin: 15px 0;
-}
-
-.opening p {
-    color: white;
-    margin-bottom: 25px;
-}
-
-.open-btn {
-    border: none;
-    padding: 14px 30px;
-    border-radius: 30px;
-    background: white;
-    color: #ff4f70;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 8px 25px rgba(0,0,0,.15);
-}
-
-
-.heart {
-    position: fixed;
-    bottom: -30px;
-    font-size: 20px;
-    pointer-events: none;
-    animation: floatUp linear forwards;
-    z-index: 2;
-}
-
-@keyframes floatUp {
-    to {
-        transform: translateY(-110vh) rotate(360deg);
-        opacity: 0;
-    }
-}
-
-@keyframes heartbeat {
-    0%, 100% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.18);
-    }
-}
-
-
-.hero {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 30px;
     background:
-        radial-gradient(circle at top left, #ffd5df, transparent 35%),
-        radial-gradient(circle at bottom right, #ffc0d0, transparent 35%),
-        #fff5f7;
+        radial-gradient(circle at 20% 20%, #ff4f9a55, transparent 30%),
+        radial-gradient(circle at 80% 80%, #7b4dff55, transparent 30%),
+        linear-gradient(135deg,#090014,#220024,#100018);
+
+    transition:
+        background 2s ease,
+        filter 1s ease;
 }
 
-.hero-content {
-    max-width: 800px;
+/* =========================
+   BACKGROUND GLOW
+========================= */
+
+.glow{
+    position:fixed;
+    width:350px;
+    height:350px;
+    border-radius:50%;
+    background:#ff4f9a40;
+    filter:blur(100px);
+    animation:glowMove 8s infinite alternate;
+    pointer-events:none;
 }
 
-.small-title {
-    color: #ff5275;
-    font-weight: bold;
-    letter-spacing: 3px;
-    text-transform: uppercase;
+.glow.one{
+    top:-100px;
+    left:-100px;
 }
 
-.hero h1 {
-    font-size: clamp(45px, 9vw, 90px);
-    line-height: 1;
-    margin: 20px 0;
+.glow.two{
+    right:-100px;
+    bottom:-100px;
+    background:#8c52ff40;
+    animation-delay:2s;
 }
 
-.hero h1 span {
-    color: #ff5275;
-}
-
-.hero p {
-    font-size: 18px;
-    line-height: 1.7;
-}
-
-.scroll {
-    display: inline-block;
-    margin-top: 40px;
-    color: #ff5275;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-
-section {
-    padding: 90px 20px;
-}
-
-.container {
-    max-width: 1000px;
-    margin: auto;
-}
-
-.section-title {
-    text-align: center;
-    margin-bottom: 50px;
-}
-
-.section-title span {
-    color: #ff5275;
-}
-
-.section-title h2 {
-    font-size: 40px;
-    margin-bottom: 10px;
-}
-
-.section-title p {
-    color: #80656b;
-}
-
-
-.gallery {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 18px;
-}
-
-.photo {
-    overflow: hidden;
-    border-radius: 20px;
-    background: white;
-    box-shadow: 0 10px 30px rgba(120,50,70,.12);
-}
-
-.photo img {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-    display: block;
-    transition: .5s;
-}
-
-.photo:hover img {
-    transform: scale(1.06);
-}
-
-.photo p {
-    padding: 15px;
-    text-align: center;
-    font-size: 14px;
-}
-
-
-.timeline {
-    position: relative;
-    max-width: 750px;
-    margin: auto;
-}
-
-.timeline::before {
-    content: "";
-    position: absolute;
-    width: 3px;
-    background: #ff9db1;
-    top: 0;
-    bottom: 0;
-    left: 50%;
-}
-
-.timeline-item {
-    width: 50%;
-    padding: 15px 30px;
-    position: relative;
-}
-
-.timeline-item:nth-child(odd) {
-    left: 0;
-    text-align: right;
-}
-
-.timeline-item:nth-child(even) {
-    left: 50%;
-}
-
-.timeline-card {
-    background: white;
-    padding: 25px;
-    border-radius: 18px;
-    box-shadow: 0 8px 25px rgba(100,40,60,.1);
-}
-
-.timeline-card h3 {
-    color: #ff5275;
-    margin-bottom: 8px;
-}
-
-
-.letter-box {
-    max-width: 750px;
-    margin: auto;
-    background: white;
-    padding: 45px;
-    border-radius: 25px;
-    box-shadow: 0 15px 40px rgba(100,40,60,.12);
-    line-height: 1.9;
-    font-size: 17px;
-}
-
-.letter-box .signature {
-    margin-top: 30px;
-    text-align: right;
-    font-weight: bold;
-    color: #ff5275;
-}
-
-
-.counter {
-    text-align: center;
-    background: #ffedf1;
-}
-
-.counter-number {
-    font-size: 55px;
-    font-weight: bold;
-    color: #ff5275;
-}
-
-.counter-label {
-    color: #80656b;
-}
-
-.music-btn {
-    position: fixed;
-    right: 20px;
-    bottom: 20px;
-    z-index: 100;
-    width: 55px;
-    height: 55px;
-    border-radius: 50%;
-    border: none;
-    background: #ff5275;
-    color: white;
-    font-size: 22px;
-    cursor: pointer;
-    box-shadow: 0 8px 25px rgba(255,82,117,.35);
-}
-
-
-.surprise {
-    text-align: center;
-    background: linear-gradient(135deg, #ff758c, #ff7eb3);
-    color: white;
-}
-
-.surprise h2 {
-    font-size: 45px;
-    margin-bottom: 20px;
-}
-
-.surprise-btn {
-    border: none;
-    background: white;
-    color: #ff5275;
-    padding: 15px 30px;
-    border-radius: 30px;
-    font-weight: bold;
-    font-size: 16px;
-    cursor: pointer;
-    margin-top: 20px;
-}
-
-.hidden-message {
-    display: none;
-    margin: 30px auto 0;
-    max-width: 650px;
-    font-size: 20px;
-    line-height: 1.8;
-}
-
-.hidden-message.show {
-    display: block;
-    animation: appear 1s ease;
-}
-
-@keyframes appear {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
+@keyframes glowMove{
+    from{
+        transform:translate(0,0) scale(1);
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
+
+    to{
+        transform:translate(100px,80px) scale(1.3);
     }
 }
 
+/* =========================
+   PAGES
+========================= */
 
-footer {
-    text-align: center;
-    padding: 30px;
-    background: #351b23;
-    color: white;
+.page{
+    position:absolute;
+    inset:0;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:20px;
+
+    transition:
+        opacity 1s ease,
+        transform 1s ease;
 }
 
-footer span {
-    color: #ff6f8d;
+.page.hidden{
+    opacity:0;
+    pointer-events:none;
+    transform:scale(.92);
 }
 
+/* =========================
+   CARD
+========================= */
 
-@media (max-width: 650px) {
+.card{
+    position:relative;
 
-    .hero h1 {
-        font-size: 55px;
+    width:min(92%,600px);
+    max-height:88vh;
+
+    padding:35px 25px;
+
+    text-align:center;
+
+    border-radius:28px;
+
+    background:rgba(255,255,255,.08);
+
+    border:1px solid rgba(255,255,255,.18);
+
+    backdrop-filter:blur(18px);
+
+    box-shadow:
+        0 0 40px rgba(255,70,140,.25),
+        inset 0 0 30px rgba(255,255,255,.03);
+
+    animation:cardAppear 1.5s ease;
+}
+
+@keyframes cardAppear{
+    from{
+        opacity:0;
+        transform:translateY(40px);
     }
 
-    .gallery {
-        grid-template-columns: 1fr;
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* =========================
+   HEART
+========================= */
+
+.bigHeart{
+    font-size:65px;
+
+    animation:
+        heartbeat 1.5s infinite,
+        floatingHeart 3s ease-in-out infinite;
+}
+
+@keyframes heartbeat{
+    0%,100%{
+        transform:scale(1);
     }
 
-    .photo img {
-        height: 330px;
+    50%{
+        transform:scale(1.18);
+    }
+}
+
+@keyframes floatingHeart{
+    0%,100%{
+        margin-top:0;
     }
 
-    .timeline::before {
-        left: 10px;
+    50%{
+        margin-top:-10px;
+    }
+}
+
+/* =========================
+   TEXT
+========================= */
+
+h1{
+    margin:15px 0;
+
+    font-size:30px;
+
+    background:
+        linear-gradient(90deg,#fff,#ff9fc8,#fff);
+
+    background-size:200%;
+
+    -webkit-background-clip:text;
+    color:transparent;
+
+    animation:textShine 4s infinite;
+}
+
+@keyframes textShine{
+    0%{
+        background-position:0%;
     }
 
-    .timeline-item,
-    .timeline-item:nth-child(even),
-    .timeline-item:nth-child(odd) {
-        width: 100%;
-        left: 0;
-        text-align: left;
-        padding-left: 35px;
-        padding-right: 0;
+    50%{
+        background-position:100%;
     }
 
-    .letter-box {
-        padding: 28px 22px;
+    100%{
+        background-position:0%;
+    }
+}
+
+p{
+    color:#f9dce9;
+    line-height:1.8;
+    font-size:15.5px;
+}
+
+/* =========================
+   BUTTON
+========================= */
+
+button{
+    margin-top:25px;
+
+    padding:13px 27px;
+
+    border:none;
+    border-radius:30px;
+
+    color:white;
+
+    font-size:15px;
+    font-weight:600;
+
+    background:
+        linear-gradient(135deg,#ff4f91,#9c4dff);
+
+    box-shadow:
+        0 7px 25px rgba(255,70,140,.3);
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+button:hover{
+    transform:scale(1.06);
+    box-shadow:
+        0 10px 35px rgba(255,70,140,.5);
+}
+
+button:active{
+    transform:scale(.96);
+}
+
+button:disabled{
+    opacity:.7;
+}
+
+/* =========================
+   MESSAGE
+========================= */
+
+.message{
+    max-height:70vh;
+    overflow-y:auto;
+
+    padding:5px 8px;
+}
+
+.message::-webkit-scrollbar{
+    width:4px;
+}
+
+.message::-webkit-scrollbar-thumb{
+    background:#ff72a8;
+    border-radius:20px;
+}
+
+/* =========================
+   SECRET
+========================= */
+
+.secretBox{
+    margin-top:30px;
+    padding:22px 17px;
+
+    border-radius:20px;
+
+    background:rgba(0,0,0,.20);
+
+    border:1px solid rgba(255,255,255,.13);
+}
+
+.secretTitle{
+    color:#ff9fc4;
+
+    font-size:13px;
+
+    letter-spacing:3px;
+
+    margin-bottom:8px;
+}
+
+.secretMessage{
+    display:none;
+
+    margin-top:20px;
+
+    padding:18px;
+
+    border-radius:17px;
+
+    background:rgba(255,255,255,.06);
+
+    border:1px solid rgba(255,255,255,.12);
+
+    animation:secretOpen 1.4s ease;
+}
+
+.secretMessage.show{
+    display:block;
+}
+
+@keyframes secretOpen{
+    from{
+        opacity:0;
+        transform:
+            translateY(30px)
+            scale(.9);
+
+        filter:blur(10px);
     }
 
-    .opening h1 {
-        font-size: 30px;
+    to{
+        opacity:1;
+        transform:
+            translateY(0)
+            scale(1);
+
+        filter:blur(0);
     }
+}
+
+/* =========================
+   MUSIC BUTTON
+========================= */
+
+.musicButton{
+    position:fixed;
+
+    top:18px;
+    right:18px;
+
+    width:46px;
+    height:46px;
+
+    margin:0;
+    padding:0;
+
+    border-radius:50%;
+
+    z-index:100;
+
+    font-size:18px;
+}
+
+/* =========================
+   FLOATING PARTICLES
+========================= */
+
+.float{
+    position:fixed;
+
+    bottom:-40px;
+
+    pointer-events:none;
+
+    opacity:.7;
+
+    animation:floatUp linear forwards;
+
+    z-index:1;
+}
+
+@keyframes floatUp{
+    0%{
+        transform:
+            translateY(0)
+            rotate(0deg);
+
+        opacity:0;
+    }
+
+    15%{
+        opacity:.8;
+    }
+
+    100%{
+        transform:
+            translateY(-110vh)
+            rotate(360deg);
+
+        opacity:0;
+    }
+}
+
+/* =========================
+   STICKMAN WORLD
+========================= */
+
+.scene{
+    position:relative;
+
+    height:150px;
+
+    margin-top:20px;
+
+    overflow:hidden;
+
+    border-radius:20px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            transparent 65%,
+            rgba(255,255,255,.08) 65%,
+            rgba(255,255,255,.08) 67%,
+            transparent 67%
+        );
+}
+
+/* STICKMAN */
+
+.stickman{
+    position:absolute;
+
+    bottom:20px;
+
+    width:35px;
+    height:80px;
+}
+
+/* LEFT PERSON */
+
+.person1{
+    left:15%;
+
+    animation:
+        walkTogether 7s
+        ease-in-out
+        infinite;
+}
+
+/* RIGHT PERSON */
+
+.person2{
+    right:15%;
+
+    animation:
+        walkTogether2 7s
+        ease-in-out
+        infinite;
+}
+
+/* HEAD */
+
+.head{
+    position:absolute;
+
+    top:0;
+    left:8px;
+
+    width:25px;
+    height:25px;
+
+    border:3px solid white;
+
+    border-radius:50%;
+}
+
+/* BODY */
+
+.body{
+    position:absolute;
+
+    top:25px;
+    left:19px;
+
+    width:3px;
+    height:32px;
+
+    background:white;
+}
+
+/* ARMS */
+
+.arm{
+    position:absolute;
+
+    top:30px;
+
+    width:3px;
+    height:27px;
+
+    background:white;
+
+    transform-origin:top;
+}
+
+.arm.left{
+    left:18px;
+    transform:rotate(35deg);
+}
+
+.arm.right{
+    left:20px;
+    transform:rotate(-35deg);
+}
+
+/* LEGS */
+
+.leg{
+    position:absolute;
+
+    top:54px;
+
+    width:3px;
+    height:30px;
+
+    background:white;
+
+    transform-origin:top;
+}
+
+.leg.left{
+    left:18px;
+
+    animation:legMove .7s infinite alternate;
+}
+
+.leg.right{
+    left:20px;
+
+    animation:legMove2 .7s infinite alternate;
+}
+
+@keyframes legMove{
+    from{
+        transform:rotate(25deg);
+    }
+
+    to{
+        transform:rotate(-25deg);
+    }
+}
+
+@keyframes legMove2{
+    from{
+        transform:rotate(-25deg);
+    }
+
+    to{
+        transform:rotate(25deg);
+    }
+}
+
+/* WALKING TOWARD EACH OTHER */
+
+@keyframes walkTogether{
+
+    0%,100%{
+        left:15%;
+    }
+
+    50%{
+        left:42%;
+    }
+}
+
+@keyframes walkTogether2{
+
+    0%,100%{
+        right:15%;
+    }
+
+    50%{
+        right:42%;
+    }
+}
+
+/* HEART BETWEEN THEM */
+
+.sceneHeart{
+    position:absolute;
+
+    left:50%;
+    top:35%;
+
+    transform:translate(-50%,-50%);
+
+    font-size:25px;
+
+    animation:
+        littleHeart 1.5s infinite;
+}
+
+@keyframes littleHeart{
+    0%,100%{
+        transform:
+            translate(-50%,-50%)
+            scale(1);
+        opacity:.5;
+    }
+
+    50%{
+        transform:
+            translate(-50%,-50%)
+            scale(1.4);
+        opacity:1;
+    }
+}
+
+/* =========================
+   SECRET MODE
+========================= */
+
+body.secretMode{
+
+    background:
+        radial-gradient(circle at 50% 30%,#ff408155,transparent 30%),
+        radial-gradient(circle at 20% 80%,#5140ff55,transparent 30%),
+        linear-gradient(135deg,#02000b,#170021,#05000d);
+}
+
+/* stars */
+
+body.secretMode .float{
+    opacity:.9;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:500px){
+
+    .card{
+        padding:28px 18px;
+    }
+
+    h1{
+        font-size:25px;
+    }
+
+    p{
+        font-size:14px;
+    }
+
+    .bigHeart{
+        font-size:55px;
+    }
+
 }
 </style>
 </head>
 
+
 <body>
 
+<!-- BACKGROUND -->
+<div class="glow one"></div>
+<div class="glow two"></div>
 
-<div class="opening" id="opening">
 
-    <div class="opening-content">
-
-        <div class="opening-heart">❤️</div>
-
-        <h1>For Someone Special</h1>
-
-        <p>
-            I made a little something for you...
-        </p>
-
-        <button class="open-btn" onclick="openWebsite()">
-            Open Our Story 💌
-        </button>
-
-    </div>
-
-</div>
-
+<!-- =========================
+     MUSIC
+========================= -->
 
 <audio id="music" loop>
-    <source src="music.mp3" type="audio/mpeg">
+    <source id="musicSource" src="music1.mp3" type="audio/mpeg">
 </audio>
 
-<button class="music-btn" onclick="toggleMusic()" id="musicButton">
+<button
+    class="musicButton"
+    id="musicButton"
+    onclick="toggleMusic()">
     🎵
 </button>
 
-<section class="hero" id="home">
 
-    <div class="hero-content">
+<!-- =========================
+     PAGE 1
+========================= -->
 
-        <div class="small-title">
-            Our Little Story
+<section class="page" id="page1">
+
+    <div class="card">
+
+        <div class="bigHeart">
+            ❤️
         </div>
 
         <h1>
-            Happy <span>Anniversary</span> ❤️
+            Please... We Still Have Time To Be Happy
         </h1>
 
         <p>
-            This website is a small collection of memories,
-            moments, and words that I wanted to keep
-            somewhere special.
+            I don't know kung paano ko sisimulan
+            lahat ng gusto kong sabihin...
         </p>
 
-        <a href="#memories" class="scroll">
-            Scroll down ↓
-        </a>
+        <p style="margin-top:15px;">
 
-    </div>
-
-</section>
-
-<section id="memories">
-
-    <div class="container">
-
-        <div class="section-title">
-
-            <p>OUR FAVORITE MOMENTS</p>
-
-            <h2>
-                Little <span>Memories</span> 📸
-            </h2>
-
-            <p>
-                Every picture has a story behind it.
-            </p>
-
-        </div>
-
-
-        <div class="gallery">
-
-            <div class="photo">
-                <img src="photo1.jpg" alt="Our memory">
-                <p>One of my favorite memories ❤️</p>
-            </div>
-
-            <div class="photo">
-                <img src="photo2.jpg" alt="Our memory">
-                <p>A moment I'll always remember.</p>
-            </div>
-
-            <div class="photo">
-                <img src="photo3.jpg" alt="Our memory">
-                <p>Another beautiful moment with you.</p>
-            </div>
-
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<section>
-
-    <div class="container">
-
-        <div class="section-title">
-
-            <p>OUR JOURNEY</p>
-
-            <h2>
-                From Then <span>To Now</span> 🥹
-            </h2>
-
-        </div>
-
-
-        <div class="timeline">
-
-            <div class="timeline-item">
-
-                <div class="timeline-card">
-
-                    <h3>The Beginning 🌸</h3>
-
-                    <p>
-                        Dito nagsimula ang story natin.
-                        Hindi ko alam kung saan tayo dadalhin
-                        ng mga araw na iyon.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="timeline-item">
-
-                <div class="timeline-card">
-
-                    <h3>Our First Memories 📸</h3>
-
-                    <p>
-                        Unti-unti tayong nagkaroon ng
-                        mga memories na hanggang ngayon
-                        ay mahalaga pa rin sa akin.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="timeline-item">
-
-                <div class="timeline-card">
-
-                    <h3>Through Everything 🌷</h3>
-
-                    <p>
-                        May mga masaya, may mga mahirap,
-                        pero bawat moment ay naging parte
-                        ng story natin.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="timeline-item">
-
-                <div class="timeline-card">
-
-                    <h3>Today ❤️</h3>
-
-                    <p>
-                        And here we are, celebrating
-                        another special chapter together.
-                    </p>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<section class="counter">
-
-    <div class="container">
-
-        <div class="section-title">
-
-            <p>OUR TIME TOGETHER</p>
-
-            <h2>
-                It's Been...
-            </h2>
-
-        </div>
-
-        <div class="counter-number" id="daysTogether">
+            Pero kung may isang bagay akong gustong
+            malaman mo, it's that I still care.
             
-        </div>
+            Sobra.
 
-        <div class="counter-label">
-            days of memories ❤️
-        </div>
-
-    </div>
-
-</section>
-
-
-<section>
-
-    <div class="container">
-
-        <div class="section-title">
-
-            <p>A MESSAGE FOR YOU</p>
-
-            <h2>
-                A Little <span>Letter</span> 💌
-            </h2>
-
-        </div>
-
-
-        <div class="letter-box">
-
-            <p>
-                Dear Wifey,
-            </p>
-
-            <br>
-
-            <p>
-                Happy Anniversary! ❤️
-            </p>
-
-            <br>
-
-            <p>
-                I made this little website because I wanted
-                to give you something different this time.
-                Hindi man ito malaking bagay, ginawa ko
-                ito with a lot of time and effort because
-                you're someone special to me.
-            </p>
-
-            <br>
-
-            <p>
-                Thank you for all the memories, conversations,
-                laughs, and moments we've shared. Every little
-                moment became something that I'll always
-                appreciate.
-            </p>
-
-            <br>
-
-            <p>
-                Whatever happens in the future, I'm thankful
-                that our paths crossed and that I got to
-                experience all these memories with you.
-            </p>
-
-            <br>
-
-            <p>
-                Happy Anniversary. ❤️
-            </p>
-
-            <div class="signature">
-                — From someone who cares about you 💗
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-<section class="surprise">
-
-    <div class="container">
-
-        <h2>
-            One Last Thing... 💌
-        </h2>
-
-        <p>
-            May isa pa akong message para sa'yo.
         </p>
 
-        <button class="surprise-btn" onclick="showMessage()">
-            Open Surprise ❤️
+        <p style="margin-top:15px;">
+
+            Maybe we made mistakes.
+            Maybe we hurt each other.
+            Maybe things became different
+            from what we imagined.
+
+        </p>
+
+        <p style="margin-top:15px;">
+
+            But maybe...
+            we still have time.
+
+            Time to understand.
+            Time to heal.
+            And maybe,
+            time to be happy again.
+
+        </p>
+
+        <button onclick="nextPage()">
+
+            Continue reading 💗
+
         </button>
 
+    </div>
 
-        <div class="hidden-message" id="hiddenMessage">
+</section>
+
+
+<!-- =========================
+     PAGE 2
+========================= -->
+
+<section class="page hidden" id="page2">
+
+    <div class="card">
+
+        <div class="message">
+
+            <div class="bigHeart">
+                💗
+            </div>
+
+            <h1>
+                For The Person I Love
+            </h1>
 
             <p>
-                If you reached this part,
-                thank you for reading everything. 🥹
+
+                I know I was wrong.
+
+                I know there were times
+                na nasaktan kita,
+                disappointed you,
+                and made you feel
+                na parang hindi ko pinahalagahan
+                yung feelings mo.
+
             </p>
 
-            <br>
+            <p style="margin-top:16px;">
 
-            <p>
-                I hope this little website made you smile,
-                even just for a moment.
+                And I'm sorry.
+
+                Hindi ko gustong sabihin yung
+                "sorry" para lang matapos yung
+                problema.
+
+                I'm saying sorry because
+                I finally understand
+                that my actions had consequences.
+
             </p>
 
-            <br>
+            <p style="margin-top:16px;">
 
-            <p>
-                Here's to all the memories we've made
-                and all the good moments still waiting
-                for us. ❤️
+                Nag-promise ako sayo
+                na hindi kita iiwan.
+
+                And I know...
+
+                nasira ko yung promise na yun.
+
+                Hindi ko na mababago yung nangyari,
+                pero kaya kong aminin na
+                nagkamali ako.
+
             </p>
 
-            <br>
+            <p style="margin-top:16px;">
 
-            <h2>
-                Happy Anniversary! ❤️
-            </h2>
+                I still love you.
+
+                Sobra.
+
+                And if you ask me kung sino yung
+                gusto kong piliin,
+                ikaw pa rin yung taong
+                nasa puso ko.
+
+            </p>
+
+            <p style="margin-top:16px;">
+
+                Hindi ko masasabi kung ano
+                ang magiging ending ng story natin.
+
+                Pero kung bibigyan man tayo
+                ng pagkakataon na magsimula ulit,
+                I don't want to make promises
+                just with words.
+
+                I want to prove it
+                through my actions.
+
+            </p>
+
+            <p style="margin-top:16px;">
+
+                I want to learn how to love you
+                better.
+
+                Not perfectly...
+
+                but genuinely.
+
+            </p>
+
+
+            <!-- =========================
+                 STICKMAN ANIMATION
+            ========================= -->
+
+            <div class="scene">
+
+                <div class="stickman person1">
+
+                    <div class="head"></div>
+
+                    <div class="body"></div>
+
+                    <div class="arm left"></div>
+                    <div class="arm right"></div>
+
+                    <div class="leg left"></div>
+                    <div class="leg right"></div>
+
+                </div>
+
+
+                <div class="sceneHeart">
+                    ❤️
+                </div>
+
+
+                <div class="stickman person2">
+
+                    <div class="head"></div>
+
+                    <div class="body"></div>
+
+                    <div class="arm left"></div>
+                    <div class="arm right"></div>
+
+                    <div class="leg left"></div>
+                    <div class="leg right"></div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =========================
+                 SECRET
+            ========================= -->
+
+            <div class="secretBox">
+
+                <div class="secretTitle">
+
+                    ✦ ONE LAST SECRET ✦
+
+                </div>
+
+                <p>
+
+                    May isa pa akong gustong
+                    sabihin sa'yo...
+
+                </p>
+
+                <button
+                    id="secretButton"
+                    onclick="openSecret()">
+
+                    🔐 Open Secret Message
+
+                </button>
+
+
+                <!-- SECRET MESSAGE -->
+
+                <div
+                    class="secretMessage"
+                    id="secretMessage">
+
+                    <p>
+
+                        Kung magkakaroon man tayo
+                        ng multiverse...
+
+                        sana sa ibang universe,
+                        maging masaya sila.
+
+                    </p>
+
+                    <p style="margin-top:15px;">
+
+                        Sana doon,
+                        mas marunong na akong magmahal.
+
+                        Sana hindi ko na siya nasaktan.
+
+                        Sana mas marami silang
+                        memories na maganda,
+                        mas maraming tawanan,
+                        at mas kaunting dahilan
+                        para umiyak.
+
+                    </p>
+
+                    <p style="margin-top:15px;">
+
+                        Sana sa universe na yun,
+                        kapag may problema,
+                        hindi kami susuko agad.
+
+                        Sana matuto kaming
+                        makinig sa isa't isa.
+
+                        Sana matuto kaming
+                        pahalagahan yung meron kami.
+
+                    </p>
+
+                    <p style="margin-top:15px;">
+
+                        And if somehow,
+                        pareho pa rin tayo
+                        sa kahit anong universe...
+
+                        sana piliin pa rin namin
+                        ang isa't isa.
+
+                        Not because we have to...
+
+                        but because
+                        we genuinely want to.
+
+                    </p>
+
+                    <p style="margin-top:18px;">
+
+                        Maybe in another universe,
+                        we got everything right.
+
+                        But in this universe...
+
+                        I still hope that someday,
+                        we can find a reason
+                        to smile again.
+
+                        ❤️
+
+                    </p>
+
+                    <p style="
+                        margin-top:20px;
+                        color:#ff9fc4;
+                        font-weight:bold;
+                    ">
+
+                        Thank you for being
+                        part of my story.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <button onclick="backPage()">
+
+                ← Back
+
+            </button>
 
         </div>
 
     </div>
 
 </section>
-
-
-<footer>
-
-    Made with <span>❤️</span> and a little bit of HTML.
-
-</footer>
 
 
 <script>
 
-function openWebsite() {
+/* =========================
+   PAGE TRANSITION
+========================= */
 
-    document.getElementById("opening")
-        .classList.add("hide");
+function nextPage(){
 
-    startMusic();
+    document
+        .getElementById("page1")
+        .classList.add("hidden");
+
+    document
+        .getElementById("page2")
+        .classList.remove("hidden");
+
+    /* Start first music */
+    const music =
+        document.getElementById("music");
+
+    music.play().catch(()=>{});
+
+    document
+        .getElementById("musicButton")
+        .innerHTML="🔊";
 }
 
-const music = document.getElementById("music");
-const musicButton = document.getElementById("musicButton");
 
-function startMusic() {
+function backPage(){
 
-    music.play().catch(() => {
-        
-    });
+    document
+        .getElementById("page2")
+        .classList.add("hidden");
+
+    document
+        .getElementById("page1")
+        .classList.remove("hidden");
 
 }
 
-function toggleMusic() {
 
-    if (music.paused) {
+/* =========================
+   MUSIC
+========================= */
+
+const music =
+    document.getElementById("music");
+
+const musicSource =
+    document.getElementById("musicSource");
+
+const musicButton =
+    document.getElementById("musicButton");
+
+
+function toggleMusic(){
+
+    if(music.paused){
 
         music.play();
 
-        musicButton.innerHTML = "🎵";
-    } else {
+        musicButton.innerHTML="🔊";
+
+    }else{
 
         music.pause();
 
-        musicButton.innerHTML = "🔇";
+        musicButton.innerHTML="🎵";
+
     }
 
 }
 
-const startDate = new Date("2025-04-01");
 
-function updateDays() {
+/* =========================
+   SECRET MESSAGE
+========================= */
 
-    const today = new Date();
+function openSecret(){
 
-    const difference =
-        today.getTime() - startDate.getTime();
+    const secret =
+        document.getElementById("secretMessage");
 
-    const days =
-        Math.floor(
-            difference / (1000 * 60 * 60 * 24)
+    const button =
+        document.getElementById("secretButton");
+
+
+    /* Reveal secret */
+
+    secret.classList.add("show");
+
+
+    /* Change button */
+
+    button.innerHTML =
+        "💗 Secret Message Opened";
+
+    button.disabled=true;
+
+
+    /* Change background */
+
+    document.body.classList.add("secretMode");
+
+
+    /* Change music */
+
+    music.pause();
+
+    musicSource.src="music2.mp3";
+
+    music.load();
+
+    music.play().catch(()=>{});
+
+    musicButton.innerHTML="🔊";
+
+
+    /* Create extra stars */
+
+    for(let i=0;i<25;i++){
+
+        setTimeout(
+            createFloat,
+            i*100
         );
 
-    document.getElementById("daysTogether")
-        .innerText = days;
-
-}
-
-updateDays();
-
-function showMessage() {
-
-    document.getElementById("hiddenMessage")
-        .classList.add("show");
-
-    createHearts(25);
-
-}
-
-function createHeart() {
-
-    const heart = document.createElement("div");
-
-    heart.className = "heart";
-
-    const hearts = [
-        "❤️",
-        "💗",
-        "💕",
-        "💖",
-        "💘"
-    ];
-
-    heart.innerHTML =
-        hearts[Math.floor(Math.random() * hearts.length)];
-
-    heart.style.left =
-        Math.random() * 100 + "vw";
-
-    heart.style.animationDuration =
-        (4 + Math.random() * 5) + "s";
-
-    heart.style.fontSize =
-        (15 + Math.random() * 20) + "px";
-
-    document.body.appendChild(heart);
-
-    setTimeout(() => {
-        heart.remove();
-    }, 9000);
-
-}
-
-setInterval(createHeart, 700);
-
-
-function createHearts(amount) {
-
-    for (let i = 0; i < amount; i++) {
-
-        setTimeout(() => {
-            createHeart();
-        }, i * 100);
-
     }
 
 }
+
+
+/* =========================
+   FLOATING HEARTS / STARS
+========================= */
+
+const symbols=[
+    "❤️",
+    "💗",
+    "💕",
+    "✨",
+    "♡",
+    "✦",
+    "🌸"
+];
+
+
+function createFloat(){
+
+    const element =
+        document.createElement("div");
+
+    element.className="float";
+
+    element.innerHTML =
+        symbols[
+            Math.floor(
+                Math.random()*symbols.length
+            )
+        ];
+
+
+    element.style.left =
+        Math.random()*100+"vw";
+
+
+    element.style.fontSize =
+        (12+Math.random()*18)+"px";
+
+
+    element.style.animationDuration =
+        (5+Math.random()*7)+"s";
+
+
+    document.body.appendChild(element);
+
+
+    setTimeout(
+        ()=>{
+            element.remove();
+        },
+        13000
+    );
+
+}
+
+
+/* Continuous particles */
+
+setInterval(
+    createFloat,
+    600
+);
 
 </script>
 
 </body>
-</html>
+    </html>
